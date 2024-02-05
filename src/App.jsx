@@ -1,35 +1,26 @@
-import './App.css'
-import {
-    BrowserRouter,
-    Routes,
-    Route
-} from "react-router-dom";
-import Home from "./pages/home/Home.jsx";
-import Login from "./pages/login/Login.jsx";
-import List from "./pages/list/List.jsx";
-import Single from "./pages/single/Single.jsx";
-import New from "./pages/new/New.jsx";
+import 'swiper/swiper.min.css';
+import './assets/boxicons-2.0.7/css/boxicons.min.css';
+import './App.scss';
+
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+
+import Routes from './config/Routes';
 
 function App() {
     return (
-        <div className="App">
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/">
-                        <Route index element={<Home/>}>
-                            <Route path="/login" element={<Login/>}/>
-                            <Route path="users">
-                                <Route index element={<List/>}/>
-                                <Route path=":UsersId" element={<Single/>}/>
-                                <Route path="new" element={<New/>}/>
-                            </Route>
-
-                        </Route>
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </div>
-    )
+        <BrowserRouter>
+            <Route render={props => (
+                <>
+                    <Header {...props}/>
+                    <Routes/>
+                    <Footer/>
+                </>
+            )}/>
+        </BrowserRouter>
+    );
 }
 
-export default App
+export default App;
